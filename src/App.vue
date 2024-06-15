@@ -52,6 +52,11 @@
           <div id="print-button-div"><button @click="printPage">Print Recipe</button></div>
         </div>
       </div>
+      <p id="refresh-disclaimer">
+        <i>The app's API is hosted on a free deployment server which may experience cold starts. Please refresh the
+          page if
+          nothing happens. Thank you for your understanding!</i>
+      </p>
       <div class="bottom-stuff">
         <div class="disclaimer">
           <h2>We ❤ Recipes (and code), but sometimes they don't see eye to eye! 🧐</h2>
@@ -80,6 +85,7 @@
           </ul>
         </div>
       </div>
+
     </main>
     <div class="footer">
       <p>© Lilian 2024 | Created with Flask, BeautifulSoup & Vue JS </p>
@@ -89,6 +95,14 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Poppins:wght@500;700&display=swap');
+
+#refresh-disclaimer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
 
 #app {
   display: flex;
@@ -214,6 +228,11 @@ button {
   font-size: 15px;
   text-decoration: none;
   height: 100%;
+  transition: background-color 0.4s ease;
+}
+
+button:active {
+  background-color: #afeeee;
 }
 
 .part-heading {
@@ -237,6 +256,16 @@ button {
 
 #submit-button {
   width: 20%;
+}
+
+#servings-button,
+#convert-button {
+  transition: background-color 0.3s ease;
+}
+
+#servings-button:active,
+#convert-button:active {
+  background-color: #ccc;
 }
 
 .disclaimer {
