@@ -1,18 +1,12 @@
 <template>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Custom Vue App</title>
-    <link rel="icon" href="/favicon.ico">
-  </head>
   <div id="app">
     <LoginComponent />
     <main>
       <h1>&#129386; Recipe Scraper</h1>
+      <div id="input-div"><input type="text" v-model="recipeUrl" placeholder="Paste recipe URL" />
+        <button id="submit-button" @click="submitRecipeUrl">Search</button>
+      </div>
       <div v-if="isLoggedIn">
-        <div id="input-div"><input type="text" v-model="recipeUrl" placeholder="Paste recipe URL" />
-          <button id="submit-button" @click="submitRecipeUrl">Search</button>
-        </div>
         <!-- Display error message if api returns error -->
         <div v-if="recipeResponse && recipeResponse.error" class="error-message">
           <p>{{ recipeResponse.error }}</p>
