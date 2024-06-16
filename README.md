@@ -13,7 +13,7 @@ https://recipescraper.mintchococookies.com
 ## Sample websites to test
 - https://rasamalaysia.com/ayam-pongteh-nyonya-chicken-and-potato-stew/
 - https://www.gimmesomeoven.com/best-mashed-potatoes-recipe/
-- https://www.recipetineats.com/carbonara/
+- https://www.simplyrecipes.com/recipes/spaghetti_alla_carbonara/
 
 ## Disclaimer
 This is my personal project as a junior software engineer and may not meet production-level reliability standards. While I have made every effort to accommodate various website layouts, the diversity of web content means that some recipes may not display optimally in this application. As I continue to develop my skills, I am actively working to improve the consistency and accuracy of recipe retrieval and formatting. 🚀💪
