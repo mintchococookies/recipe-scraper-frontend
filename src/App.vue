@@ -3,8 +3,10 @@
     <LoginComponent />
     <main>
       <h1>&#129386; Recipe Scraper</h1>
-      <div id="input-div"><input type="text" v-model="recipeUrl" placeholder="Paste recipe URL" />
-        <button id="submit-button" @click="submitRecipeUrl">Search</button>
+      <div id="input-div">
+        <input type="text" v-model="recipeUrl" placeholder="Paste recipe URL" />
+        <button id="submit-button" :disabled="loading" @click="submitRecipeUrl">{{ loading ? 'Loading..' : 'Search'
+        }}</button>
       </div>
       <div v-if="isLoggedIn">
         <!-- Display error message if api returns error -->
@@ -431,7 +433,8 @@ export default {
       servingSize: null,
       servingSizeInput: null,
       token: null,
-      apiUrl: process.env.VUE_APP_API_URL
+      apiUrl: process.env.VUE_APP_API_URL,
+      loading: false,
     };
   },
   methods: {
@@ -441,19 +444,30 @@ export default {
           console.error('No token found');
           return;
         }
+
+        // Set loading to true to show loading indicator and change button text
+        this.loading = true;
+
         const response = await axios.post(`${this.apiUrl}/scrape-recipe-steps`, {
           recipe_url: this.recipeUrl
         }, {
           headers: {
-            Authorization: `${this.token}`
+            Authorization: this.token
           }
         });
+
+        // Assign response to recipeResponse to display recipe details
         this.recipeResponse = response.data;
         this.unitType = this.recipeResponse.original_unit_type;
-        this.servingSize = this.recipeResponse.servings;
         this.servingSizeInput = parseInt(this.recipeResponse.servings);
+
       } catch (error) {
         console.error('Error submitting recipe URL:', error.response ? error.response.data : error.message);
+        // Set error message in recipeResponse to display error
+        this.recipeResponse = { error: 'Please enter a valid URL.' };
+      } finally {
+        // Set loading back to false to hide loading indicator and restore button text
+        this.loading = false;
       }
     },
     async convertUnits() {
